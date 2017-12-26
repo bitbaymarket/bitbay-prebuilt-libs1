@@ -43,6 +43,7 @@ build_script:
   - 7z x openssl-1.0.2n.tar.gz -so | 7z x -si -ttar > nul
   - move openssl-1.0.2n openssl
   - cd openssl
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
   - sh ./config
   - make
   - cd ..
