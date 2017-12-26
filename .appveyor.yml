@@ -20,7 +20,7 @@ build_script:
   - cd %WORKPATH%
   - md boost_1_63_win
   - cd boost_1_63_win
-  - cp %BOOST_PATH%\stage\lib\*.a .
+  - copy %BOOST_PATH%\stage\lib\*.a .
   - dir
   - cd ..
   - set PATH=%PATH_ORIG%
