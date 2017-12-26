@@ -27,11 +27,11 @@ build_script:
   - set PATH=%PATH_ORIG%
   - 7z a boost_1_63_win.zip boost_1_63_win
   - echo *** miniupnpc ***
-  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
   - curl -fsSL -o miniupnpc-2.0.tar.gz http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.0.tar.gz
   - 7z x miniupnpc-2.0.tar.gz -so | 7z x -si -ttar > nul
   - move miniupnpc-2.0 miniupnpc
   - cd miniupnpc
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
   - perl -i -pe 's/CC \?= gcc/CC = gcc/m' Makefile.mingw
   - copy C:\MinGW\msys\1.0\bin\echo.exe upx.exe
   - mingw32make.bat
