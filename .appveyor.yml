@@ -5,7 +5,7 @@ install:
   - set QTDIR=C:\Qt\5.9.2\mingw53_32
   - set BOOST_PATH=C:\Libraries\boost_1_63_0
   - set PATH_ORIG=%PATH%
-  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin;%PATH%
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
 build_script:
   - set WORKPATH=%cd%
   - echo *** boost ***
@@ -27,7 +27,7 @@ build_script:
   - set PATH=%PATH_ORIG%
   - 7z a boost_1_63_win.zip boost_1_63_win
   - echo *** miniupnpc ***
-  - set PATH=%PATH%;%BOOST_PATH%\b2_mingw\bin
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
   - curl -fsSL -o miniupnpc-2.0.tar.gz http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.0.tar.gz
   - 7z x miniupnpc-2.0.tar.gz -so | 7z x -si -ttar > nul
   - move miniupnpc-2.0 miniupnpc
