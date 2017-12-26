@@ -8,6 +8,7 @@ install:
   - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin;%PATH%
 build_script:
   - set WORKPATH=%cd%
+  - echo *** boost ***
   - cd %BOOST_PATH%
   - cd tools\build
   - .\bootstrap.bat gcc
@@ -25,6 +26,23 @@ build_script:
   - cd ..
   - set PATH=%PATH_ORIG%
   - 7z a boost_1_63_win.zip boost_1_63_win
+  - echo *** miniupnpc ***
+  - set PATH=%PATH%;%BOOST_PATH%\b2_mingw\bin
+  - curl -fsSL -o miniupnpc-2.0.tar.gz http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.0.tar.gz
+  - 7z x miniupnpc-2.0.tar.gz -so | 7z x -si -ttar > nul
+  - move miniupnpc-2.0 miniupnpc
+  - cd miniupnpc
+  - perl -i -pe 's/CC \?= gcc/CC = gcc/m' Makefile.mingw
+  - copy C:\MinGW\msys\1.0\bin\echo.exe upx.exe
+  - mingw32make.bat
+  - cd ..
+  - mv miniupnpc miniupnpc_win
+  - set PATH=%PATH_ORIG%
+  - 7z a miniupnpc_win.zip miniupnpc_win
+
 artifacts:
   - path: boost_1_63_win.zip
     name: boost_1_63_win.zip
+
+  - path: miniupnpc_win.zip
+    name: miniupnpc_win.zip
