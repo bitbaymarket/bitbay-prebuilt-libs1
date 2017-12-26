@@ -39,6 +39,16 @@ build_script:
   - mv miniupnpc miniupnpc_win
   - set PATH=%PATH_ORIG%
   - 7z a miniupnpc_win.zip miniupnpc_win
+  - curl -fsSL -o openssl-1.0.2n.tar.gz https://www.openssl.org/source/openssl-1.0.2n.tar.gz
+  - 7z x openssl-1.0.2n.tar.gz -so | 7z x -si -ttar > nul
+  - move openssl-1.0.2n openssl
+  - cd openssl
+  - sh ./config
+  - make
+  - cd ..
+  - mv openssl openssl_win
+  - set PATH=%PATH_ORIG%
+  - 7z a openssl_win.zip openssl_win
 
 artifacts:
   - path: boost_1_63_win.zip
