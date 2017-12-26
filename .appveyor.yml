@@ -1,0 +1,30 @@
+version: '{build}'
+image: Visual Studio 2015
+
+install:
+  - set QTDIR=C:\Qt\5.9.2\mingw53_32
+  - set BOOST_PATH=C:\Libraries\boost_1_63_0
+  - set PATH_ORIG=%PATH%
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin;%PATH%
+build_script:
+  - set WORKPATH=%cd%
+  - cd %BOOST_PATH%
+  - cd tools\build
+  - .\bootstrap.bat gcc
+  - .\b2.exe install toolset=gcc --prefix=%BOOST_PATH%\b2_mingw
+  - cd ..
+  - cd ..
+  - set PATH=%PATH%;%BOOST_PATH%\b2_mingw\bin
+  - b2 toolset=gcc --build-type=complete link=static threading=multi variant=release --layout=tagged stage --with-system --with-filesystem --with-program_options --with-thread --with-chrono
+  - ls stage\lib
+  - cd %WORKPATH%
+  - md boost_1_63_win
+  - cd boost_1_63_win
+  - cp %BOOST_PATH%\stage\lib\*.a .
+  - dir
+  - cd ..
+  - set PATH=%PATH_ORIG%
+  - 7z a boost_1_63_win.zip boost_1_63_win
+artifacts:
+  - path: boost_1_63_win.zip
+    name: boost_1_63_win.zip
