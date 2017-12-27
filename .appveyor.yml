@@ -66,7 +66,7 @@ build_script:
   - perl -i -pe 's/define socklen_t int/define socklen_t_xx int/m' db_config.h
   - perl -i -pe 's/define HAVE_REPLICATION_THREADS 1/define HAVE_REPLICATION_THREADS_XX 1/m' db_config.h
   - cd .. 
-  - patch -p1 < patches/db-4.8.30-fix-for-mingw.patch
+  - patch -p1 < ../patches/db-4.8.30-fix-for-mingw.patch
   - cd build_unix
   - make
 
