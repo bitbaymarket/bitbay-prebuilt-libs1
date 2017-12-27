@@ -11,7 +11,7 @@ build_script:
   - set WORKPATH=%cd%
   - echo *** qt ***
   - set PATH=%PATH_ORIG%
-  - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z "https://downloads.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/dwarf/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z?r=http%3A%2F%2Fdoc.qt.io%2Fqt-5%2Fsupported-platforms-and-configurations.html&ts=1514413812&use_mirror=netcologne"
+  - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z "https://netix.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/dwarf/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z"
   - 7z x -y i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z > nul
   - ls
   - fail
