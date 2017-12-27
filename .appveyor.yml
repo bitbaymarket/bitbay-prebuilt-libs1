@@ -16,9 +16,11 @@ build_script:
   - ls
   - curl -fsSL -o qt-everywhere-src-5.10.0.zip https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/qt-everywhere-src-5.10.0.zip
   - 7z x -y qt-everywhere-src-5.10.0.zip > nul
-  - set PATH=%cd%\MinGW32\bin;C:\MinGW\msys\1.0\bin
+  - set PATH=%cd%\MinGW32\bin;C:\MinGW\msys\1.0\bin;C:\Python27
   - cd qt-everywhere-src-5.10.0
-  - sh ./configure -platform win32-g++ -prefix %WORKPATH%\static-qt -opensource -confirm-license -release -static -no-opengl 
+  - sh ./configure -platform win32-g++ -prefix %WORKPATH%\static-qt -opensource -confirm-license -release -static -no-opengl -nomake examples -nomake tests -nomake tools -no-angle -qt-sql-sqlite -make libs -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype
+  - sh ./configure -platform win32-g++ -prefix %WORKPATH%\static-qt -opensource -confirm-license -release -static -no-opengl -nomake examples -nomake tests -nomake tools -no-angle -make libs -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -no-dbus -skip qtconnectivity -skip qt3d -skip qtactiveqt -skip qtcharts -skip qtdatavis3d -skip  qtdeclarative -skip qtlocation -skip qtmultimedia -skip qtpurchasing -skip qtquickcontrols -skip qtquickcontrols2 -skip qtscript -skip qtsvg -skip qtwebengine -skip qtwebchannel -skip qtwebview -skip qtxmlpatterns
+  - make -j2
   - cd ..
   - fail
   - echo *** boost ***
