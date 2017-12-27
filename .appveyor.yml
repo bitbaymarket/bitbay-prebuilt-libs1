@@ -53,6 +53,20 @@ build_script:
   - cp openssl/lib* openssl_win/
   - set PATH=%PATH_ORIG%
   - 7z a openssl_win.zip openssl_win
+  - echo *** db-4.8 ***
+  - curl -fsSL -o db-4.8.30.NC.tar.gz http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
+  - tar -zxf db-4.8.30.NC.tar.gz
+  - mv db-4.8.30.NC db
+  - cd db
+  - cd build_unix
+  - sh ../dist/configure --enable-mingw --enable-cxx
+  - perl -i -pe 's/REP_OBJS\) \$\(REPMGR_OBJS\) /REP_OBJS) repmgr_stub.lo /m' Makefile
+  - perl -i -pe 's/define socklen_t int/define socklen_t_xx int/m' db_config.h
+  - perl -i -pe 's/define HAVE_REPLICATION_THREADS 1/define HAVE_REPLICATION_THREADS_XX 1/m' db_config.h
+  - cd .. 
+  - patch -p1 < patches/db-4.8.30-fix-for-mingw.patch
+  - cd build_unix
+  - make
 
 artifacts:
   - path: boost_1_63_win.zip
