@@ -6,6 +6,7 @@ install:
   - set BOOST_PATH=C:\Libraries\boost_1_63_0
   - set PATH_ORIG=%PATH%
   - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
+  - mingw-get install msys-patch
 build_script:
   - set WORKPATH=%cd%
   - echo *** boost ***
