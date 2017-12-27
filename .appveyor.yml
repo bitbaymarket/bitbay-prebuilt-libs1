@@ -8,6 +8,18 @@ install:
   - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
 build_script:
   - set WORKPATH=%cd%
+  - echo *** qt ***
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
+  - curl -fsSL -o qt-everywhere-src-5.10.0.zip  http://download.qt.io/official_releases/qt/5.10/5.10.0/single/qt-everywhere-src-5.10.0.zip
+  - 7z x -y qt-everywhere-src-5.10.0.zip > nul
+  - cd qt-everywhere-src-5.10.0
+  - cd qtbase
+  - cd mkspecs
+  - cd win32-g++
+  - patch < ../../../../patches/qt-mingw-mkspecs-static.patch
+  - cd ..
+  - cd ..
+  - cd ..
   - echo *** boost ***
   - cd %BOOST_PATH%
   - cd tools\build
@@ -53,6 +65,8 @@ build_script:
   - cp openssl/lib* openssl_win/
   - set PATH=%PATH_ORIG%
   - 7z a openssl_win.zip openssl_win
+  - echo *** db ***
+  - mingw-get install msys-patch
 
 artifacts:
   - path: boost_1_63_win.zip
