@@ -11,11 +11,11 @@ build_script:
   - set WORKPATH=%cd%
   - echo *** qt ***
   - set PATH=%PATH_ORIG%
-  - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z "https://netix.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/5.3.0/threads-posix/dwarf/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z"
+  - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
   - 7z x -y i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z > nul
   - ls
   - fail
-  - curl -fsSL -o qt-everywhere-src-5.10.0.zip  http://download.qt.io/official_releases/qt/5.10/5.10.0/single/qt-everywhere-src-5.10.0.zip
+  - curl -fsSL -o qt-everywhere-src-5.10.0.zip https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/qt-everywhere-src-5.10.0.zip
   - 7z x -y qt-everywhere-src-5.10.0.zip > nul
   - cd qt-everywhere-src-5.10.0
   - cd qtbase
