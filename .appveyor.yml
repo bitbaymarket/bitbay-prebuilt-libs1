@@ -14,17 +14,13 @@ build_script:
   - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
   - 7z x -y i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z > nul
   - ls
-  - fail
   - curl -fsSL -o qt-everywhere-src-5.10.0.zip https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/qt-everywhere-src-5.10.0.zip
   - 7z x -y qt-everywhere-src-5.10.0.zip > nul
+  - set PATH=%cd%\MinGW32\bin;C:\MinGW\msys\1.0\bin
   - cd qt-everywhere-src-5.10.0
-  - cd qtbase
-  - cd mkspecs
-  - cd win32-g++
-  - patch < ../../../../patches/qt-mingw-mkspecs-static.patch
+  - sh ./configure -platform win32-g++
   - cd ..
-  - cd ..
-  - cd ..
+  - fail
   - echo *** boost ***
   - cd %BOOST_PATH%
   - cd tools\build
