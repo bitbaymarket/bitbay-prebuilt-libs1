@@ -48,7 +48,9 @@ build_script:
   - sh ./config
   - make
   - cd ..
-  - mv openssl openssl_win
+  - md openssl_win
+  - cp -r openssl/include openssl_win/
+  - cp openssl/lib* openssl_win/
   - set PATH=%PATH_ORIG%
   - 7z a openssl_win.zip openssl_win
 
