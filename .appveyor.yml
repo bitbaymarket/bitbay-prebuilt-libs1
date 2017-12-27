@@ -20,13 +20,13 @@ build_script:
   - b2 toolset=gcc --build-type=complete link=static threading=multi variant=release --layout=tagged stage --with-system --with-filesystem --with-program_options --with-thread --with-chrono
   - ls stage\lib
   - cd %WORKPATH%
-  - md boost_1_63_win
-  - cd boost_1_63_win
+  - md static_boost_1_63_win
+  - cd static_boost_1_63_win
   - copy %BOOST_PATH%\stage\lib\*.a .
   - dir
   - cd ..
   - set PATH=%PATH_ORIG%
-  - 7z a boost_1_63_win.zip boost_1_63_win
+  - 7z a static_boost_1_63_win.zip static_boost_1_63_win
   - echo *** miniupnpc ***
   - curl -fsSL -o miniupnpc-2.0.tar.gz http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.0.tar.gz
   - 7z x miniupnpc-2.0.tar.gz -so | 7z x -si -ttar > nul
@@ -37,9 +37,9 @@ build_script:
   - copy C:\MinGW\msys\1.0\bin\echo.exe upx.exe
   - mingw32make.bat
   - cd ..
-  - mv miniupnpc miniupnpc_win
+  - mv miniupnpc static_miniupnpc_win
   - set PATH=%PATH_ORIG%
-  - 7z a miniupnpc_win.zip miniupnpc_win
+  - 7z a static_miniupnpc_win.zip static_miniupnpc_win
   - echo *** openssl ***
   - curl -fsSL -o openssl-1.0.2n.tar.gz https://www.openssl.org/source/openssl-1.0.2n.tar.gz
   - 7z x openssl-1.0.2n.tar.gz -so | 7z x -si -ttar > nul
@@ -49,11 +49,11 @@ build_script:
   - sh ./config
   - make
   - cd ..
-  - md openssl_win
-  - cp -r openssl/include openssl_win/
-  - cp openssl/lib* openssl_win/
+  - md static_openssl_win
+  - cp -r openssl/include static_openssl_win/
+  - cp openssl/lib* static_openssl_win/
   - set PATH=%PATH_ORIG%
-  - 7z a openssl_win.zip openssl_win
+  - 7z a static_openssl_win.zip static_openssl_win
   - echo *** db-4.8 ***
   - curl -fsSL -o db-4.8.30.NC.tar.gz http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
   - tar -zxf db-4.8.30.NC.tar.gz
@@ -69,13 +69,24 @@ build_script:
   - patch -p1 < ../patches/db-4.8.30-fix-for-mingw.patch
   - cd build_unix
   - make
+  - cd ..
+  - cd ..
+  - md static_db_4_8_win
+  - md static_db_4_8_win\include
+  - cp db/build_unix/*.h static_db_4_8_win/include/
+  - cp db/build_unix/lib*a static_db_4_8_win/
+  - set PATH=%PATH_ORIG%
+  - 7z a static_db_4_8_win.zip static_db_4_8_win
 
 artifacts:
-  - path: boost_1_63_win.zip
-    name: boost_1_63_win.zip
+  - path: static_boost_1_63_win.zip
+    name: static_boost_1_63_win.zip
 
-  - path: miniupnpc_win.zip
-    name: miniupnpc_win.zip
+  - path: static_miniupnpc_win.zip
+    name: static_miniupnpc_win.zip
 
-  - path: openssl_win.zip
-    name: openssl_win.zip
+  - path: static_openssl_win.zip
+    name: static_openssl_win.zip
+
+  - path: static_db_4_8_win.zip
+    name: static_db_4_8_win.zip
