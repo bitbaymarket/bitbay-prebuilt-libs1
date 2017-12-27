@@ -59,6 +59,7 @@ build_script:
   - mv db-4.8.30.NC db
   - cd db
   - cd build_unix
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
   - sh ../dist/configure --enable-mingw --enable-cxx
   - perl -i -pe 's/REP_OBJS\) \$\(REPMGR_OBJS\) /REP_OBJS) repmgr_stub.lo /m' Makefile
   - perl -i -pe 's/define socklen_t int/define socklen_t_xx int/m' db_config.h
