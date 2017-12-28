@@ -91,6 +91,7 @@ build_script:
   - set PATH=%PATH_ORIG%
   - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
   - 7z x -y i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z > nul
+  - rm i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
   - ls
   - cd C:\Qt
   - curl -fsSL -o qt-everywhere-src-5.10.0.zip https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/qt-everywhere-src-5.10.0.zip
@@ -98,7 +99,7 @@ build_script:
   - mv qt-everywhere-src-5.10.0 static_qt_5_10_win_build
   - set PATH=%WORKPATH%\MinGW32\bin;C:\MinGW\msys\1.0\bin
   - cd static_qt_5_10_win_build
-  - sh ./configure -platform win32-g++ -prefix C:\Qt\static_qt_5_10_win -opensource -confirm-license -release -static -static-runtime -no-opengl -nomake examples -nomake tests -nomake tools -no-angle -make libs -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -no-dbus -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip qtgamepad -skip qtgraphicaleffects -skip qtlocation -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquickcontrols -skip qtquickcontrols2 -skip qtremoteobjects -skip qtscript -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg -skip qttools -skip qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebglplugin -skip qtwebsockets -skip qtwebview -skip qtwinextras -skip qtx11extras -skip qtxmlpatterns
+  - sh ./configure -platform win32-g++ -prefix C:\Qt\static_qt_5_10_win -opensource -confirm-license -silent -release -static -static-runtime -no-opengl -nomake examples -nomake tests -nomake tools -no-angle -make libs -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -no-dbus -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip qtgamepad -skip qtgraphicaleffects -skip qtlocation -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquickcontrols -skip qtquickcontrols2 -skip qtremoteobjects -skip qtscript -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg -skip qttools -skip qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebglplugin -skip qtwebsockets -skip qtwebview -skip qtwinextras -skip qtx11extras -skip qtxmlpatterns
   - make
   - make install
   - cd ..
@@ -109,6 +110,7 @@ build_script:
   - rm -rf static_qt_5_10_win
   - move static_qt_5_10_win.zip %WORKPATH%\
   - cd %WORKPATH%
+  - rm -rf MinGW32
   - ls
 
 test: off
