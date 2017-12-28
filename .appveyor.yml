@@ -25,6 +25,7 @@ build_script:
   - set PATH=%PATH_ORIG%
   - 7z a static_qt_5_10_win.zip static_qt_5_10_win
   - echo *** boost ***
+  - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
   - cd %BOOST_PATH%
   - cd tools\build
   - .\bootstrap.bat gcc
