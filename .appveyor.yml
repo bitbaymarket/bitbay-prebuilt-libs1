@@ -107,7 +107,6 @@ build_script:
   - ls
   - set PATH=%PATH_ORIG%
   - 7z a static_qt_5_10_win.zip static_qt_5_10_win
-  - rm -rf static_qt_5_10_win
   - move static_qt_5_10_win.zip %WORKPATH%\
   - cd %WORKPATH%
   - rm -rf MinGW32
