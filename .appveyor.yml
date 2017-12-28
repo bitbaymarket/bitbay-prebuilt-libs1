@@ -28,11 +28,9 @@ build_script:
   - cd ..
   - set PATH=%PATH_ORIG%
   - 7z a static_boost_1_63_win.zip static_boost_1_63_win
-  - rm -rf static_boost_1_63_win
   - echo *** miniupnpc ***
   - curl -fsSL -o miniupnpc-2.0.tar.gz http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.0.tar.gz
   - 7z x miniupnpc-2.0.tar.gz -so | 7z x -si -ttar > nul
-  - rm miniupnpc-2.0.tar.gz
   - move miniupnpc-2.0 miniupnpc
   - cd miniupnpc
   - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
@@ -43,11 +41,9 @@ build_script:
   - mv miniupnpc static_miniupnpc_win
   - set PATH=%PATH_ORIG%
   - 7z a static_miniupnpc_win.zip static_miniupnpc_win
-  - rm -rf static_miniupnpc_win
   - echo *** openssl ***
   - curl -fsSL -o openssl-1.0.2n.tar.gz https://www.openssl.org/source/openssl-1.0.2n.tar.gz
   - 7z x openssl-1.0.2n.tar.gz -so | 7z x -si -ttar > nul
-  - rm openssl-1.0.2n.tar.gz
   - move openssl-1.0.2n openssl
   - cd openssl
   - set PATH=C:\MinGW\bin;C:\MinGW\msys\1.0\bin
@@ -60,11 +56,9 @@ build_script:
   - set PATH=%PATH_ORIG%
   - rm -rf openssl
   - 7z a static_openssl_win.zip static_openssl_win
-  - rm -rf static_openssl_win
   - echo *** db-4.8 ***
   - curl -fsSL -o db-4.8.30.NC.tar.gz http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
   - tar -zxf db-4.8.30.NC.tar.gz
-  - rm db-4.8.30.NC.tar.gz
   - mv db-4.8.30.NC db
   - cd db
   - cd build_unix
@@ -83,10 +77,8 @@ build_script:
   - md static_db_4_8_win\include
   - cp db/build_unix/*.h static_db_4_8_win/include/
   - cp db/build_unix/lib*a static_db_4_8_win/
-  - rm -rf db
   - set PATH=%PATH_ORIG%
   - 7z a static_db_4_8_win.zip static_db_4_8_win
-  - rm -rf static_db_4_8_win
   - echo *** qt ***
   - set PATH=%PATH_ORIG%
   - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
@@ -100,16 +92,14 @@ build_script:
   - set PATH=%WORKPATH%\MinGW32\bin;C:\MinGW\msys\1.0\bin
   - cd static_qt_5_10_win_build
   - sh ./configure -platform win32-g++ -prefix C:\Qt\static_qt_5_10_win -opensource -confirm-license -silent -release -static -static-runtime -no-opengl -nomake examples -nomake tests -no-angle -make libs -qt-zlib -qt-pcre -qt-libpng -qt-libjpeg -qt-freetype -no-dbus -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip qtgamepad -skip qtgraphicaleffects -skip qtlocation -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquickcontrols -skip qtquickcontrols2 -skip qtremoteobjects -skip qtscript -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qtsvg -skip qttranslations -skip qtvirtualkeyboard -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebglplugin -skip qtwebsockets -skip qtwebview -skip qtwinextras -skip qtx11extras -skip qtxmlpatterns
-  - make 
+  - make
   - make -j2 install
   - cd ..
-  - rm -rf static_qt_5_10_win_build
   - ls
   - set PATH=%PATH_ORIG%
   - 7z a static_qt_5_10_win.zip static_qt_5_10_win
   - move static_qt_5_10_win.zip %WORKPATH%\
   - cd %WORKPATH%
-  - rm -rf MinGW32
   - ls
 
 test: off
