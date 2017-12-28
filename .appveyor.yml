@@ -29,7 +29,7 @@ build_script:
   - set PATH=%PATH_ORIG%
   - 7z a static_boost_1_63_win.zip static_boost_1_63_win
   - echo *** miniupnpc ***
-  - curl -fsSL -o miniupnpc-2.0.tar.gz http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.0.tar.gz
+  - curl -fsSL -o miniupnpc-2.0.tar.gz https://github.com/bitbaymarket/bitbay-prebuilt-libs1/releases/download/base1/miniupnpc-2.0.tar.gz
   - 7z x miniupnpc-2.0.tar.gz -so | 7z x -si -ttar > nul
   - move miniupnpc-2.0 miniupnpc
   - cd miniupnpc
@@ -42,7 +42,7 @@ build_script:
   - set PATH=%PATH_ORIG%
   - 7z a static_miniupnpc_win.zip static_miniupnpc_win
   - echo *** openssl ***
-  - curl -fsSL -o openssl-1.0.2n.tar.gz https://www.openssl.org/source/openssl-1.0.2n.tar.gz
+  - curl -fsSL -o openssl-1.0.2n.tar.gz https://github.com/bitbaymarket/bitbay-prebuilt-libs1/releases/download/base1/openssl-1.0.2n.tar.gz
   - 7z x openssl-1.0.2n.tar.gz -so | 7z x -si -ttar > nul
   - move openssl-1.0.2n openssl
   - cd openssl
@@ -57,7 +57,7 @@ build_script:
   - rm -rf openssl
   - 7z a static_openssl_win.zip static_openssl_win
   - echo *** db-4.8 ***
-  - curl -fsSL -o db-4.8.30.NC.tar.gz http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
+  - curl -fsSL -o db-4.8.30.NC.tar.gz https://github.com/bitbaymarket/bitbay-prebuilt-libs1/releases/download/base1/db-4.8.30.NC.tar.gz
   - tar -zxf db-4.8.30.NC.tar.gz
   - mv db-4.8.30.NC db
   - cd db
@@ -81,12 +81,12 @@ build_script:
   - 7z a static_db_4_8_win.zip static_db_4_8_win
   - echo *** qt ***
   - set PATH=%PATH_ORIG%
-  - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
+  - curl -fsSL -o i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z https://github.com/bitbaymarket/bitbay-prebuilt-libs1/releases/download/base1/i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
   - 7z x -y i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z > nul
   - rm i686-5.3.0-release-posix-dwarf-rt_v4-rev0.7z
   - ls
   - cd C:\Qt
-  - curl -fsSL -o qt-everywhere-src-5.10.0.zip https://github.com/yshurik/wbb-prebuilt-libs/releases/download/base1/qt-everywhere-src-5.10.0.zip
+  - curl -fsSL -o qt-everywhere-src-5.10.0.zip https://github.com/bitbaymarket/bitbay-prebuilt-libs1/releases/download/base1/qt-everywhere-src-5.10.0.zip
   - 7z x -y qt-everywhere-src-5.10.0.zip > nul
   - mv qt-everywhere-src-5.10.0 static_qt_5_10_win_build
   - set PATH=%WORKPATH%\MinGW32\bin;C:\MinGW\msys\1.0\bin
