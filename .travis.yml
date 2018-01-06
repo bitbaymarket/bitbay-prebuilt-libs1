@@ -20,6 +20,7 @@ script:
 - CFLAGS="-mmacosx-version-min=10.9" CXXFLAGS="-mmacosx-version-min=10.9" sh ../dist/configure --enable-cxx --prefix=`pwd`/inst
 - make -j2
 - make install
+- rm -rf inst/docs
 - mv inst static_db_4_8_mac
 - zip -r static_db_4_8_mac.zip static_db_4_8_mac
 - mv static_db_4_8_mac.zip ../..
