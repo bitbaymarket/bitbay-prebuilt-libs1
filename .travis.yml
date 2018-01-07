@@ -1,0 +1,37 @@
+language: cpp
+os:
+- osx
+osx_image: xcode7.3
+dist: trusty
+compiler:
+- clang
+before_script:
+- '[[ "$TRAVIS_OS_NAME" != osx   || "$CXX" != clang++ ]] || export QMAKESPEC=macx-clang'
+- cd "$TRAVIS_BUILD_DIR"
+- ls
+script:
+- cd "$TRAVIS_BUILD_DIR"
+- curl -fsSL -o db-4.8.30.NC.tar.gz http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
+- tar -zxf db-4.8.30.NC.tar.gz
+- mv db-4.8.30.NC db
+- cd db
+- patch dbinc/atomic.h < ../patches/db-4.8.30-fix-for-mac-atomic.patch
+- cd build_unix
+- CFLAGS="-mmacosx-version-min=10.9" CXXFLAGS="-mmacosx-version-min=10.9" sh ../dist/configure --enable-cxx --prefix=`pwd`/inst
+- make -j2
+- make install
+- rm -rf inst/docs
+- mv inst static_db_4_8_mac
+- zip -r static_db_4_8_mac.zip static_db_4_8_mac
+- mv static_db_4_8_mac.zip ../..
+- cd ..
+- cd ..
+- ls
+deploy:
+  provider: releases
+  api_key:
+    secure: HjYrssBPHzUv9nGC/NOwgSpVfEihPVg2o6gMeEk18sD3Cxe3f9pYZq9HMWwT4Iwf7rlnIvYnUtYxWHiffYllrf9+aSmCVHZQBldqCwM0Rq4csZebaXi36je5GrKlGzIHofe3u0Mo+9GqUNNcnS1vL1ENzVxesFl8qLCKKO21SE9GTvQ0Yp05LARjfRJ6YA4Pxbu1wZsWjQFgOfddSoStKcdEx9oH1myjouo0S+EPOkkFR/yfTlTxPxVdFHJBD6oE62y4RNEg22d7HTQE30BTE4KHmkqooanPkFevIWpTyG+1yDbA1RDsB+ajkyZZ9HBgF0J2R2soUqb7oJzTnTxzrcByz6sIoAtQiqpSABdIwkqzVhMb/McyLF6081/TWf8rh8iPLw3zsocI/ebbgXCaOJlT8uaVbQKbOoV3nyFen/ubtuz1RjFBwZ8MpyFGez6Gsu3flGIdGRMHBz/KjDknLOwV2JArpPZ/8sdryWIcPc1itZ/pYnfQZBhnem4uLCsLDndfRBh9YmDyXyNdZHa6tUI4hW1yRUW8Fb/yuo3kSKgkgHJpi1JCWJkWTlpzfW+1ulGv0FLtJihojgj3XtuEZPySZmLEam/wiDZvRd7hVh69SXfy5lCwLBWa3p1JGRbQZ5qN4y6YzeyKn9NLwCyC5HPGHhCaHw9hyfF9UMr2BXs=
+  file: $TRAVIS_BUILD_DIR/static_db_4_8_mac.zip
+  skip_cleanup: true
+  on:
+    tags: true
